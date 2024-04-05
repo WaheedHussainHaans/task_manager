@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 
 import '../../models/task.dart';
@@ -22,25 +20,6 @@ class TasksState {
       isLoading: isLoading ?? this.isLoading,
     );
   }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'tasks': tasks.map((x) => x.toMap()).toList(),
-      'isLoading': isLoading,
-    };
-  }
-
-  factory TasksState.fromMap(Map<String, dynamic> map) {
-    return TasksState(
-      tasks: List<Task>.from(map['tasks']?.map((x) => Task.fromMap(x))),
-      isLoading: map['isLoading'] ?? false,
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory TasksState.fromJson(String source) =>
-      TasksState.fromMap(json.decode(source));
 
   @override
   String toString() => 'TasksState(tasks: $tasks, isLoading: $isLoading)';
